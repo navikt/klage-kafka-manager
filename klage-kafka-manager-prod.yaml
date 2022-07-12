@@ -1,0 +1,79 @@
+kind: Application
+apiVersion: nais.io/v1alpha1
+metadata:
+  name: klage-kafka-manager
+  namespace: klage
+  labels:
+    team: klage
+spec:
+  image: ghcr.io/navikt/kafka-manager/kafka-manager:2.2022.02.14_08.11-14fd30c0514f # See https://github.com/navikt/kafka-manager/packages
+  port: 8080
+  webproxy: true
+  ingresses:
+    - https://klage-kafka-manager.intern.nav.no
+  prometheus:
+    enabled: true
+    path: /internal/prometheus
+  readiness:
+    path: /internal/health/readiness
+    initialDelay: 20
+  liveness:
+    path: /internal/health/liveness
+    initialDelay: 20
+  replicas:
+    min: 1
+    max: 1  # 1 instance is required since in-memory session management is used
+    cpuThresholdPercentage: 75
+  resources:
+    limits:
+      cpu: "1"
+      memory: 1024Mi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+  azure: # Required
+    application:
+      enabled: true
+      tenant: nav.no
+      claims:
+        groups:
+          - id: cd78b8e8-73a3-4fb6-8234-7bebb5e5b9e9 # Required for authorization
+  kafka:
+    pool: nav-prod
+  env:
+    - name: APP_CONFIG_JSON # Required
+      value: >
+        {
+          "topics": [
+            {
+              "name": "klage.kabal-statistikk.v1",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },
+            {
+              "name": "klage.behandling-events.v1",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },
+            {
+              "name": "klage.behandling-endret.v2",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },
+            {
+              "name": "klage.privat-klage-mottatt-v1",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },
+            {
+              "name": "klage.privat-klage-mottatt-v1-dlt",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            }
+          ]
+        }
