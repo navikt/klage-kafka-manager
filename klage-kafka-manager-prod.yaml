@@ -74,6 +74,18 @@ spec:
               "location": "AIVEN",
               "keyDeserializerType": "STRING",
               "valueDeserializerType": "STRING"
-            }
+            },
+            {
+              "name": "klage.internal-events.v1",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },
+            {
+              "name": "klage.arkiver-journalpost-events-v1",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },        
           ]
         }
