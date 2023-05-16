@@ -5,7 +5,7 @@ Dev:
 kubectl config use-context dev-gcp
 kubectl apply -f klage-kafka-manager-dev.yaml -n klage
 ```
-Kafka-manager available at https://klage-kafka-manager.dev.intern.nav.no/index.html
+Kafka-manager available at https://klage-kafka-manager.intern.dev.nav.no/index.html
 
 Prod:
 
