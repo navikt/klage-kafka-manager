@@ -58,6 +58,12 @@ spec:
               "valueDeserializerType": "STRING"
             },
             {
+              "name": "klage.vedtak-fattet.v1",
+              "location": "AIVEN",
+              "keyDeserializerType": "STRING",
+              "valueDeserializerType": "STRING"
+            },
+            {
               "name": "klage.behandling-endret.v2",
               "location": "AIVEN",
               "keyDeserializerType": "STRING",
