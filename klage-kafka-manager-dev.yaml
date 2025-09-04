@@ -42,9 +42,6 @@ spec:
       claims:
         groups:
           - id: 90805436-8a2b-430a-a699-73b29205f25d # Klage teknisk admin role
-    sidecar:
-      enabled: true
-      autoLogin: true
   kafka:
     pool: nav-dev
   env:
