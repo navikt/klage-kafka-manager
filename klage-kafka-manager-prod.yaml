@@ -37,7 +37,7 @@ spec:
       tenant: nav.no
       claims:
         groups:
-          - id: cd78b8e8-73a3-4fb6-8234-7bebb5e5b9e9 # Required for authorization
+          - id: 90805436-8a2b-430a-a699-73b29205f25d # Klage teknisk admin role
   kafka:
     pool: nav-prod
   env:
