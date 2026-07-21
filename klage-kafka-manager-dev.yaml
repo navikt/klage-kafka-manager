@@ -16,8 +16,6 @@ spec:
   prometheus:
     enabled: true
     path: /internal/prometheus
-  secureLogs:
-    enabled: true
   readiness:
     path: /internal/health/readiness
     initialDelay: 20
